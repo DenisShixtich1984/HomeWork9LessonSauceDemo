@@ -1,4 +1,4 @@
-# HomeWork9LessonSauceDemof 
+# HomeWork9LessonSauceDemof чеклист:
 проверка ввода логина locked_out_user и стандартного пароля	                                        
 проверка ввода логина problem_user и стандартного пароля	                                       
 проверка ввода логина performance_glitch_user и стандартного пароля	                                
