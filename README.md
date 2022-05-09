@@ -1,5 +1,4 @@
 # HomeWork9LessonSauceDemof 
-summary	                                                                                                 module
 проверка ввода логина locked_out_user и стандартного пароля	                                        авторизация
 проверка ввода логина problem_user и стандартного пароля	                                        авторизация
 проверка ввода логина performance_glitch_user и стандартного пароля	                                авторизация
