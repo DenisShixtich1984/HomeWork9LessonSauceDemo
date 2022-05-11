@@ -1,6 +1,7 @@
 package com.sausedemo.tests;
 
 import com.sausedemo.pages.CartPage;
+import com.sausedemo.pages.LeftMenuPage;
 import com.sausedemo.pages.LoginPage;
 import com.sausedemo.pages.ProductsPage;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,7 @@ public class BaseTest {
     protected LoginPage loginPage;
     protected ProductsPage productsPage;
     protected CartPage cartPage;
+    protected LeftMenuPage menu;
 
     @BeforeMethod
     public void setUp () {
@@ -25,9 +27,10 @@ public class BaseTest {
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
         cartPage = new CartPage(driver);
+        menu = new LeftMenuPage(driver);
     }
-    @AfterMethod
-    public void closeBrowser () {
-        driver.quit();
-    }
+//    @AfterMethod
+//    public void closeBrowser () {
+//        driver.quit();
+//    }
 }
