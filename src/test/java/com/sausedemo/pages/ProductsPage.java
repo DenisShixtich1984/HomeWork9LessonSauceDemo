@@ -3,8 +3,12 @@ package com.sausedemo.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
-public class ProductsPage extends BasePage{
+import java.util.ArrayList;
+import java.util.List;
+
+public class ProductsPage extends BasePage {
     public ProductsPage(WebDriver driver) {
         super(driver);
     }
@@ -20,8 +24,32 @@ public class ProductsPage extends BasePage{
     private By lightningTShirts = By.name("add-to-cart-sauce-labs-onesie");
     private By selectFilterName = By.className("product_sort_container");
     private By selectZtoA = By.xpath("//option[text() ='Name (Z to A)']");
+    //-----------------------------------------------------------------------------
+    private By select = By.className("product_sort_container");
+    private By itemList = By.cssSelector(".inventory_item");
+    private By itemName = By.cssSelector(".inventory_item_name");
+    private By itemPrice = By.cssSelector(".inventory_item_price");
 
+    public Select getSelect() {
+        return new Select(driver.findElement(select));
+    }
 
+    public void selectValueByText(String text) {
+        getSelect().selectByVisibleText(text);
+    }
+
+    public List<WebElement> getItemList() {
+        return driver.findElements(itemList);
+    }
+
+    public List<String> getItemName() {
+        List<String> names = new ArrayList<>();
+        for (WebElement item : getItemList()) {
+            names.add(item.findElement(itemName).getText());
+        }
+        return names;
+    }
+//---------------------------------------------------------------------------------
     public String getPageProdTitle () {
         return driver.findElement(NameTitle).getText();
     }

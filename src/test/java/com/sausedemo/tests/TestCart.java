@@ -6,8 +6,8 @@ import org.testng.annotations.Test;
 public class TestCart extends BaseTest {
     @Test
     public void testRedShirtAddToCart() {
-        loginPage.openPage();
-        loginPage.LoginWithStandardUser();
+        loginPage.startLoginPasAndClick();
+        // проба завернуть еще в большую обертку
         Assert.assertEquals(productsPage.getPageProdTitle(), "PRODUCTS");
         productsPage.addToCartRedTShirt();
         productsPage.pressCartButton();
@@ -17,8 +17,7 @@ public class TestCart extends BaseTest {
 
     @Test
     public void testCheckPrice() {
-        loginPage.openPage();
-        loginPage.LoginWithStandardUser();
+        loginPage.startLoginPasAndClick();
         Assert.assertEquals(productsPage.getPageProdTitle(), "PRODUCTS");
         productsPage.addToCartRedTShirt();
         productsPage.pressCartButton();
@@ -30,10 +29,11 @@ public class TestCart extends BaseTest {
     @Test
     public void testRemoveShirt() {
         loginPage.openPage();
-        loginPage.LoginWithStandardUser();
+        loginPage.loginWithStandardUser();
         Assert.assertEquals(productsPage.getPageProdTitle(), "PRODUCTS");
         productsPage.addToCartRedTShirt();
         productsPage.pressCartButton();
+        waitForAction.waitOpenAndCheckTShirt();
         Assert.assertEquals(cartPage.getCartTitle(), "YOUR CART");
         Assert.assertEquals(cartPage.getCheckThingInTheCart(), "Test.allTheThings() T-Shirt (Red)");
         cartPage.getRemoveButton().click();
