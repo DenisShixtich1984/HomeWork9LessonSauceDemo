@@ -1,107 +1,129 @@
 package com.sausedemo.pages;
-
-import org.openqa.selenium.By;
+import com.sausedemo.utils.PropertyReader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductsPage extends BasePage {
+
+    @FindBy(xpath = "//span[text() ='Products']")
+    public WebElement nameTitle;
+    @FindBy(xpath = "//button[text() ='Remove']")
+    public WebElement checkButton;
+    @FindBy(css = ".shopping_cart_link")
+    public WebElement checkCart;
+    @FindBy(id = "add-to-cart-sauce-labs-backpack")
+    public WebElement backpack;
+    @FindBy(id ="add-to-cart-test.allthethings()-t-shirt-(red)")
+    public WebElement redTShirt;
+    @FindBy(id = "add-to-cart-sauce-labs-bike-light")
+    public WebElement bikeLight;
+    @FindBy(id = "add-to-cart-sauce-labs-bolt-t-shirt")
+    public WebElement blackTShirt;
+    @FindBy(id = "add-to-cart-sauce-labs-fleece-jacket")
+    public WebElement grayJacket;
+    @FindBy (name = "add-to-cart-sauce-labs-onesie")
+    public WebElement lightningTShirts;
+    @FindBy (className = "product_sort_container")
+    public WebElement selectFilterName;
+    @FindBy (xpath = "//option[text() ='Name (Z to A)']")
+    public WebElement selectZtoA;
+    @FindBy (className = "product_sort_container")
+    public WebElement select;
+    @FindBys({
+            @FindBy(css = ".inventory_item")
+            })
+    public List <WebElement> itemList;
+    @FindBy (css = ".inventory_item_name")
+    public WebElement itemName;
+    @FindBy (css = ".inventory_item_price")
+    public WebElement itemPrice;
+    @FindBy (xpath = "//span[text ()='6']")
+    public WebElement checkThingsInCart;
+    @FindBy (xpath = "//a[text()='Twitter']")
+    public WebElement iconTwitter;
+    @FindBy (xpath = "//a[text()='Facebook']")
+    public WebElement iconFacebook;
+    @FindBy (xpath = "//h1[text()='Sauce Labs']")
+    public WebElement xFacebook;
+    @FindBy (xpath = "//a[text()='LinkedIn']")
+    public WebElement iconLinkedIn;
+    @FindBy (css = ".title")
+    public WebElement titleOfProduct;
+
+    // конструктор
     public ProductsPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
-    private By NameTitle = By.xpath("//span[text() ='Products']");
-    private By checkButton = By.xpath("//button[text() ='Remove']");
-    private By checkCart = By.cssSelector(".shopping_cart_link");
-    private By backpack = By.id("add-to-cart-sauce-labs-backpack");
-    private By redTShirt = By.id("add-to-cart-test.allthethings()-t-shirt-(red)");
-    private By bikeLight = By.id("add-to-cart-sauce-labs-bike-light");
-    private By blackTShirt = By.id("add-to-cart-sauce-labs-bolt-t-shirt");
-    private By grayJacket = By.id("add-to-cart-sauce-labs-fleece-jacket");
-    private By lightningTShirts = By.name("add-to-cart-sauce-labs-onesie");
-    private By selectFilterName = By.className("product_sort_container");
-    private By selectZtoA = By.xpath("//option[text() ='Name (Z to A)']");
-    //-----------------------------------------------------------------------------
-    private By select = By.className("product_sort_container");
-    private By itemList = By.cssSelector(".inventory_item");
-    private By itemName = By.cssSelector(".inventory_item_name");
-    private By itemPrice = By.cssSelector(".inventory_item_price");
+    @Override
+    public BasePage isPageOpened() {
+        wait.until(ExpectedConditions.visibilityOf(nameTitle));
+        return this;
+    }
 
     public Select getSelect() {
-        return new Select(driver.findElement(select));
+        return new Select(select);
     }
 
     public void selectValueByText(String text) {
         getSelect().selectByVisibleText(text);
     }
 
-    public List<WebElement> getItemList() {
-        return driver.findElements(itemList);
-    }
-
     public List<String> getItemName() {
         List<String> names = new ArrayList<>();
-        for (WebElement item : getItemList()) {
-            names.add(item.findElement(itemName).getText());
+        for (WebElement item : itemList) {
+            names.add((itemName).getText());
         }
         return names;
     }
-//---------------------------------------------------------------------------------
+
     public String getPageProdTitle () {
-        return driver.findElement(NameTitle).getText();
+        return nameTitle.getText();
     }
-    public WebElement getRedTShirtAddToCart () {
-        return driver.findElement(redTShirt);
-    }
+
     public ProductsPage addToCartRedTShirt () {
-        getRedTShirtAddToCart().click();
+        redTShirt.click();
         return this;
     }
 
     public String checkPressedButton () {
-        return driver.findElement(checkButton).getText();
+        return checkButton.getText();
     }
-    public WebElement getCartButton () {
-        return driver.findElement(checkCart);
-    }
+
     public CartPage pressCartButton () {
-        getCartButton().click();
+        checkCart.click();
         return new CartPage(driver);
     }
-    public WebElement getBackpack () {
-        return driver.findElement(backpack);}
-    public WebElement getBikeLight () {
-        return driver.findElement(bikeLight);}
-    public WebElement getBlackTShirt () {
-        return driver.findElement(blackTShirt);}
-    public WebElement getGrayJacket () {
-        return driver.findElement(grayJacket);}
-    public WebElement getLightningTShirts () {
-        return driver.findElement(lightningTShirts);}
 
     public ProductsPage addToCartAllElements () {
-        getRedTShirtAddToCart().click();
-        getBackpack().click();
-        getBikeLight().click();
-        getBlackTShirt().click();
-        getGrayJacket().click();
-        getLightningTShirts().click();
+        redTShirt.click();
+        backpack.click();
+        bikeLight.click();
+        blackTShirt.click();
+        grayJacket.click();
+        lightningTShirts.click();
         return this;
     }
     public String checkCart () {
-        return driver.findElement(By.xpath("//span[text ()='6']")).getText();
-    }
-    public WebElement selectFilter () {
-        return driver.findElement(selectFilterName);
+        return checkThingsInCart.getText();
     }
 
-    public WebElement selectOptionsZtoA () {
-        return driver.findElement(selectZtoA);
-    }
     public String checkSelectZtoA () {
-        return driver.findElement(selectZtoA).getText();
+        return selectZtoA.getText();
+    }
+    public String checkFaceBook () { return xFacebook.getText();}
+    public void waitOpenProductPage() {
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        wait.until(ExpectedConditions.visibilityOf(titleOfProduct));
     }
 }

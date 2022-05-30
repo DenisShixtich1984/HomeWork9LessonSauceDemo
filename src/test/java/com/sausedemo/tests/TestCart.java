@@ -7,10 +7,10 @@ public class TestCart extends BaseTest {
     @Test
     public void testRedShirtAddToCart() {
         loginPage.startLoginPasAndClick();
-        // проба завернуть еще в большую обертку
+        // проба завернуть  логин и пароль еще в большую обертку
         Assert.assertEquals(productsPage.getPageProdTitle(), "PRODUCTS");
-        productsPage.addToCartRedTShirt();
-        productsPage.pressCartButton();
+        productsPage.addToCartRedTShirt().pressCartButton();
+        cartPage.isPageOpened();
         Assert.assertEquals(cartPage.getCartTitle(), "YOUR CART");
         Assert.assertEquals(cartPage.getCheckThingInTheCart(), "Test.allTheThings() T-Shirt (Red)");
     }
@@ -19,8 +19,8 @@ public class TestCart extends BaseTest {
     public void testCheckPrice() {
         loginPage.startLoginPasAndClick();
         Assert.assertEquals(productsPage.getPageProdTitle(), "PRODUCTS");
-        productsPage.addToCartRedTShirt();
-        productsPage.pressCartButton();
+        productsPage.addToCartRedTShirt().pressCartButton();
+        cartPage.isPageOpened();
         Assert.assertEquals(cartPage.getCartTitle(), "YOUR CART");
         Assert.assertEquals(cartPage.getCheckThingInTheCart(), "Test.allTheThings() T-Shirt (Red)");
         Assert.assertEquals(cartPage.getCheckPriceInTheCart(), "$15.99");
@@ -31,12 +31,12 @@ public class TestCart extends BaseTest {
         loginPage.openPage();
         loginPage.loginWithStandardUser();
         Assert.assertEquals(productsPage.getPageProdTitle(), "PRODUCTS");
-        productsPage.addToCartRedTShirt();
-        productsPage.pressCartButton();
-        waitForAction.waitOpenAndCheckTShirt();
+        productsPage.addToCartRedTShirt().pressCartButton();
+        cartPage.waitOpenAndCheckTShirt();
+        cartPage.isPageOpened();
         Assert.assertEquals(cartPage.getCartTitle(), "YOUR CART");
         Assert.assertEquals(cartPage.getCheckThingInTheCart(), "Test.allTheThings() T-Shirt (Red)");
-        cartPage.getRemoveButton().click();
+        cartPage.removeButton.click();
         Assert.assertEquals(cartPage.getCart(), "");
     }
 }
