@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Smoke" parallel="tests" thread-count ="5">
+    <test name="Login">
+        <classes>
+            <class name="com.sausedemo.tests.TestLoginOptional">
+                 <parameter name="Log" value="performance_glitch_user"/>
+                 <parameter name="Pass" value="secret_sauce"/>
+            </class>
+        </classes>
+    </test>
+</suite>

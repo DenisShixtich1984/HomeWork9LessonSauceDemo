@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="number1" parallel="tests" thread-count ="2">
+    <test name="group2">
+       <groups>
+           <run>
+     <include name="number1"/>
+           </run>
+       </groups>
+        <classes>
+            <class name="com.sausedemo.tests.TestLogin"> </class>
+        </classes>
+    </test>
+</suite>

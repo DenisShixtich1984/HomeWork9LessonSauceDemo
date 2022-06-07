@@ -66,7 +66,9 @@ public class TestProducts extends BaseTest {
         loginPage.openPage();
         loginPage.loginWithStandardUser();
         productsPage.isPageOpened();
-        productsPage.iconTwitter.click();
+        productsPage.pressButtonTwitter();
+       // twitterPage.waitUntilTwitUp();
+       // Assert.assertTrue(twitterPage.checkTwit.isEnabled());
     }
 
     @Test
@@ -75,7 +77,6 @@ public class TestProducts extends BaseTest {
         loginPage.loginWithStandardUser();
         productsPage.isPageOpened();
         productsPage.iconFacebook.click();
-
     }
 
     @Test

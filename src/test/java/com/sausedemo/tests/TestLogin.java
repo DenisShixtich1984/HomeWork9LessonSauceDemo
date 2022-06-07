@@ -3,7 +3,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class TestLogin extends BaseTest{
-    @Test
+    @Test(groups = "number1")
     public void testLogin() {
         loginPage.openPage();
         loginPage.isPageOpened();
@@ -11,7 +11,7 @@ public class TestLogin extends BaseTest{
          productsPage.waitOpenProductPage();
         Assert.assertEquals(productsPage.getPageProdTitle(), "PRODUCTS");
     }
-    @Test
+        @Test(groups = "number1")
     public void testEmptyPassword() {
         loginPage.openPage();
         loginPage.isPageOpened();

@@ -59,6 +59,9 @@ public class ProductsPage extends BasePage {
     @FindBy (css = ".title")
     public WebElement titleOfProduct;
 
+
+
+
     // конструктор
     public ProductsPage(WebDriver driver) {
         super(driver);
@@ -103,6 +106,11 @@ public class ProductsPage extends BasePage {
     public CartPage pressCartButton () {
         checkCart.click();
         return new CartPage(driver);
+    }
+
+    public TwitterPage pressButtonTwitter () {
+        iconTwitter.click();
+        return new TwitterPage(driver);
     }
 
     public ProductsPage addToCartAllElements () {
