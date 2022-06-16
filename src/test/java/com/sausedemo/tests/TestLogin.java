@@ -48,4 +48,6 @@ public class TestLogin extends BaseTest{
         productsPage.waitOpenProductPage();
         Assert.assertEquals(productsPage.getPageProdTitle(), "PRODUCTS");
     }
+
+//"performance_glitch_user"
 }

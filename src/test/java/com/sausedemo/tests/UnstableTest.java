@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class UnstableTest extends BaseTest{
     @Test (timeOut = 1000, retryAnalyzer = Retry.class)
     public void testRemoveShirtUnstable() {
-        long timeout = RandomUtils.nextLong(1100,1600);
+        long timeout = RandomUtils.nextLong(1100,1400);
         loginPage.openPage();
         loginPage.loginWithStandardUser();
         Assert.assertEquals(productsPage.getPageProdTitle(), "PRODUCTS");
